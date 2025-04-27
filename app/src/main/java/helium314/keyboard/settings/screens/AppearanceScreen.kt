@@ -93,15 +93,15 @@ fun AppearanceScreen(
         if (unfoldedSettings) Settings.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED else null,
         if (unfoldedSettings && prefs.getBoolean(Settings.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED, Defaults.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED))
             Settings.PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED else null,
-        if (prefs.getBoolean(Settings.PREF_THEME_KEY_BORDERS, Defaults.PREF_THEME_KEY_BORDERS))
+        if (unfoldedSettings && prefs.getBoolean(Settings.PREF_THEME_KEY_BORDERS, Defaults.PREF_THEME_KEY_BORDERS))
             Settings.PREF_NARROW_KEY_GAPS_UNFOLDED else null,
         if (unfoldedSettings) Settings.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED else null,
-        Settings.PREF_BOTTOM_PADDING_SCALE_UNFOLDED,
-        Settings.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED,
-        Settings.PREF_SIDE_PADDING_SCALE_UNFOLDED,
-        Settings.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED,
-        Settings.PREF_FONT_SCALE_UNFOLDED,
-        Settings.PREF_EMOJI_FONT_SCALE_UNFOLDED,
+        if (unfoldedSettings) Settings.PREF_BOTTOM_PADDING_SCALE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_SIDE_PADDING_SCALE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_FONT_SCALE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_EMOJI_FONT_SCALE_UNFOLDED else null,
     )
     SearchSettingsScreen(
         onClickBack = onClickBack,
