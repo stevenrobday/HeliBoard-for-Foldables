@@ -54,6 +54,8 @@
     <string name="split_spacer_scale">Split distance</string>
     <!--  Option for setting distance for split keyboard in landscape mode -->
     <string name="split_spacer_scale_landscape">Split distance (landscape)</string>
+    <!-- Settings category title for Appearance & Layout/Misc -->
+    <string name="settings_category_unfolded_settings">Unfolded Settings</string>
     <!-- Option name for including other IMEs in the language key switch list -->
     <string name="language_switch_key_switch_input_method">Switch to other input methods</string>
     <!-- Option name for switching language / subtype only -->
@@ -341,13 +343,17 @@
     <!-- Title of the setting for setting bottom padding height in landscape mode -->
     <string name="prefs_bottom_padding_scale_landscape">Bottom padding scale (landscape)</string>
     <!-- Title of the setting for adjusting font size on the keyboard -->
+    <string name="prefs_font_scale">Keyboard font scale</string>
     <!-- Title of the setting for setting side padding -->
     <string name="prefs_side_padding_scale">Side padding scale</string>
     <!-- Title of the setting for setting side padding in landscape mode -->
     <string name="prefs_side_padding_scale_landscape">Side padding scale (landscape)</string>
-    <string name="prefs_font_scale">Keyboard font scale</string>
     <!-- Title of the setting for adjusting font size in emoji view -->
     <string name="prefs_emoji_font_scale">Emoji view font scale</string>
+    <!-- Option for additional unfolded settings for foldable phones -->
+    <string name="prefs_unfolded_settings">Unfolded settings</string>
+    <!-- Description for "unfolded_settings" option. -->
+    <string name="prefs_unfolded_settings_summary">Additional settings for foldable phones</string>
     <!-- Title of the setting for customizing space bar text -->
     <string name="prefs_space_bar_text">Custom text on space bar</string>
     <!-- Title of the setting for adding / removing custom font file -->

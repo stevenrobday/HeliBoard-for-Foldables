@@ -95,6 +95,19 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
     public static final String PREF_SIDE_PADDING_SCALE_LANDSCAPE = "side_padding_scale_landscape";
     public static final String PREF_FONT_SCALE = "font_scale";
     public static final String PREF_EMOJI_FONT_SCALE = "emoji_font_scale";
+    public static final String PREF_UNFOLDED_SETTINGS = "unfolded_settings";
+    public static final String PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED = "split_keyboard_unfolded";
+    public static final String PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED = "split_keyboard_landscape_unfolded";
+    public static final String PREF_SPLIT_SPACER_SCALE_UNFOLDED = "split_spacer_scale_unfolded";
+    public static final String PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED = "split_spacer_scale_landscape_unfolded";
+    public static final String PREF_NARROW_KEY_GAPS_UNFOLDED = "narrow_key_gaps_unfolded";
+    public static final String PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED = "keyboard_height_scale_unfolded";
+    public static final String PREF_BOTTOM_PADDING_SCALE_UNFOLDED = "bottom_padding_scale_unfolded";
+    public static final String PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED = "bottom_padding_scale_landscape_unfolded";
+    public static final String PREF_SIDE_PADDING_SCALE_UNFOLDED = "side_padding_scale_unfolded";
+    public static final String PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED = "side_padding_scale_landscape_unfolded";
+    public static final String PREF_FONT_SCALE_UNFOLDED = "font_scale_unfolded";
+    public static final String PREF_EMOJI_FONT_SCALE_UNFOLDED = "emoji_font_scale_unfolded";
     public static final String PREF_SPACE_HORIZONTAL_SWIPE = "horizontal_space_swipe";
     public static final String PREF_SPACE_VERTICAL_SWIPE = "vertical_space_swipe";
     public static final String PREF_DELETE_SWIPE = "delete_swipe";
@@ -407,6 +420,28 @@ public final class Settings implements SharedPreferences.OnSharedPreferenceChang
         if (landscape)
             return prefs.getFloat(PREF_SIDE_PADDING_SCALE_LANDSCAPE, Defaults.PREF_SIDE_PADDING_SCALE_LANDSCAPE);
         return prefs.getFloat(PREF_SIDE_PADDING_SCALE, Defaults.PREF_SIDE_PADDING_SCALE);
+    }
+
+    public static boolean readSplitKeyboardEnabledUnfolded(final SharedPreferences prefs, final boolean isLandscape) {
+        final String pref = isLandscape ? PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED : PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED;
+        return prefs.getBoolean(pref, isLandscape ? Defaults.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED : Defaults.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED);
+    }
+
+    public static float readSplitSpacerScaleUnfolded(final SharedPreferences prefs, final boolean isLandscape) {
+        final String pref = isLandscape ? PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED : PREF_SPLIT_SPACER_SCALE_UNFOLDED;
+        return prefs.getFloat(pref, isLandscape ? Defaults.PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED : Defaults.PREF_SPLIT_SPACER_SCALE_UNFOLDED);
+    }
+
+    public static float readBottomPaddingScaleUnfolded(final SharedPreferences prefs, final boolean landscape) {
+        if (landscape)
+            return prefs.getFloat(PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED, Defaults.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED);
+        return prefs.getFloat(PREF_BOTTOM_PADDING_SCALE_UNFOLDED, Defaults.PREF_BOTTOM_PADDING_SCALE_UNFOLDED);
+    }
+
+    public static float readSidePaddingScaleUnfolded(final SharedPreferences prefs, final boolean landscape) {
+        if (landscape)
+            return prefs.getFloat(PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED, Defaults.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED);
+        return prefs.getFloat(PREF_SIDE_PADDING_SCALE_UNFOLDED, Defaults.PREF_SIDE_PADDING_SCALE_UNFOLDED);
     }
 
     public static boolean readHasHardwareKeyboard(final Configuration conf) {

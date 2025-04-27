@@ -53,6 +53,7 @@ fun AppearanceScreen(
     if ((b?.value ?: 0) < 0)
         Log.v("irrelevant", "stupid way to trigger recomposition on preference change")
     val dayNightMode = Build.VERSION.SDK_INT >= Build.VERSION_CODES.P && prefs.getBoolean(Settings.PREF_THEME_DAY_NIGHT, Defaults.PREF_THEME_DAY_NIGHT)
+    val unfoldedSettings = prefs.getBoolean(Settings.PREF_UNFOLDED_SETTINGS, Defaults.PREF_UNFOLDED_SETTINGS)
     val items = listOf(
         R.string.settings_screen_theme,
         Settings.PREF_THEME_STYLE,
@@ -84,6 +85,23 @@ fun AppearanceScreen(
         SettingsWithoutKey.CUSTOM_FONT,
         Settings.PREF_FONT_SCALE,
         Settings.PREF_EMOJI_FONT_SCALE,
+        Settings.PREF_UNFOLDED_SETTINGS,
+        if (unfoldedSettings) R.string.settings_category_unfolded_settings else null,
+        if (unfoldedSettings) Settings.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED else null,
+        if (unfoldedSettings && prefs.getBoolean(Settings.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED, Defaults.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED))
+            Settings.PREF_SPLIT_SPACER_SCALE_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED else null,
+        if (unfoldedSettings && prefs.getBoolean(Settings.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED, Defaults.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED))
+            Settings.PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED else null,
+        if (prefs.getBoolean(Settings.PREF_THEME_KEY_BORDERS, Defaults.PREF_THEME_KEY_BORDERS))
+            Settings.PREF_NARROW_KEY_GAPS_UNFOLDED else null,
+        if (unfoldedSettings) Settings.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED else null,
+        Settings.PREF_BOTTOM_PADDING_SCALE_UNFOLDED,
+        Settings.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED,
+        Settings.PREF_SIDE_PADDING_SCALE_UNFOLDED,
+        Settings.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED,
+        Settings.PREF_FONT_SCALE_UNFOLDED,
+        Settings.PREF_EMOJI_FONT_SCALE_UNFOLDED,
     )
     SearchSettingsScreen(
         onClickBack = onClickBack,
@@ -285,6 +303,99 @@ fun createAppearanceSettings(context: Context) = listOf(
             name = setting.title,
             key = setting.key,
             default = Defaults.PREF_EMOJI_FONT_SCALE,
+            range = 0.5f..1.5f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_UNFOLDED_SETTINGS, R.string.prefs_unfolded_settings, R.string.prefs_unfolded_settings_summary) {
+        SwitchPreference(it, Defaults.PREF_UNFOLDED_SETTINGS) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED, R.string.enable_split_keyboard) {
+        SwitchPreference(it, Defaults.PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED) { KeyboardSwitcher.getInstance().reloadKeyboard() }
+    },
+    Setting(context, Settings.PREF_SPLIT_SPACER_SCALE_UNFOLDED, R.string.split_spacer_scale) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_SPLIT_SPACER_SCALE_UNFOLDED,
+            range = 0.5f..2f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED, R.string.enable_split_keyboard_landscape) {
+        SwitchPreference(it, Defaults.PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED) { KeyboardSwitcher.getInstance().reloadKeyboard() }
+    },
+    Setting(context, Settings.PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED, R.string.split_spacer_scale_landscape) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_SPLIT_SPACER_SCALE_LANDSCAPE_UNFOLDED,
+            range = 0.5f..2f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_NARROW_KEY_GAPS_UNFOLDED, R.string.prefs_narrow_key_gaps) {
+        SwitchPreference(it, Defaults.PREF_NARROW_KEY_GAPS_UNFOLDED) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED, R.string.prefs_keyboard_height_scale) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED,
+            range = 0.5f..1.5f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_BOTTOM_PADDING_SCALE_UNFOLDED, R.string.prefs_bottom_padding_scale) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_BOTTOM_PADDING_SCALE_UNFOLDED,
+            range = 0f..5f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED, R.string.prefs_bottom_padding_scale_landscape) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_BOTTOM_PADDING_SCALE_LANDSCAPE_UNFOLDED,
+            range = 0f..5f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_SIDE_PADDING_SCALE_UNFOLDED, R.string.prefs_side_padding_scale) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_SIDE_PADDING_SCALE_UNFOLDED,
+            range = 0f..3f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED, R.string.prefs_side_padding_scale_landscape) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_SIDE_PADDING_SCALE_LANDSCAPE_UNFOLDED,
+            range = 0f..3f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_FONT_SCALE_UNFOLDED, R.string.prefs_font_scale) { def ->
+        SliderPreference(
+            name = def.title,
+            key = def.key,
+            default = Defaults.PREF_FONT_SCALE_UNFOLDED,
+            range = 0.5f..1.5f,
+            description = { "${(100 * it).toInt()}%" }
+        ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
+    },
+    Setting(context, Settings.PREF_EMOJI_FONT_SCALE_UNFOLDED, R.string.prefs_emoji_font_scale) { setting ->
+        SliderPreference(
+            name = setting.title,
+            key = setting.key,
+            default = Defaults.PREF_EMOJI_FONT_SCALE_UNFOLDED,
             range = 0.5f..1.5f,
             description = { "${(100 * it).toInt()}%" }
         ) { KeyboardSwitcher.getInstance().setThemeNeedsReload() }
