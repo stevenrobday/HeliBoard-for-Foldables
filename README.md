@@ -1,3 +1,7 @@
+# HeliBoard for Foldable Phones
+Additional settings for inner screen under Appearance. 
+Set height, split, split distance, narrow keys, padding, and font/emoji scale independently for the second screen.
+
 # HeliBoard
 HeliBoard is a privacy-conscious and customizable open-source keyboard, based on AOSP / OpenBoard.
 Does not use internet permission, and thus is 100% offline.
