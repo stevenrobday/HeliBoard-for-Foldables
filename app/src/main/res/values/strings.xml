@@ -48,14 +48,20 @@
     <string name="settings_category_miscellaneous">Miscellaneous</string>
     <!--  Option for enabling or disabling the split keyboard layout in portrait mode.-->
     <string name="enable_split_keyboard">Enable split keyboard</string>
+    <!--  Option for enabling or disabling the unfolded split keyboard layout in portrait mode.-->
+    <string name="enable_split_keyboard_unfolded">Enable unfolded split keyboard</string>
     <!--  Option for enabling or disabling the split keyboard layout in landscape mode.-->
     <string name="enable_split_keyboard_landscape">Enable split keyboard (landscape)</string>
+    <!--  Option for enabling or disabling the unfolded split keyboard layout in landscape mode.-->
+    <string name="enable_split_keyboard_landscape_unfolded">Enable unfolded split keyboard (landscape)</string>
     <!--  Option for setting distance for split keyboard in portrait mode -->
     <string name="split_spacer_scale">Split distance</string>
+    <!--  Option for setting distance for unfolded split keyboard in portrait mode -->
+    <string name="split_spacer_scale_unfolded">Unfolded split distance</string>
     <!--  Option for setting distance for split keyboard in landscape mode -->
     <string name="split_spacer_scale_landscape">Split distance (landscape)</string>
-    <!-- Settings category title for Appearance & Layout/Misc -->
-    <string name="settings_category_unfolded_settings">Unfolded Settings</string>
+    <!--  Option for setting distance for unfolded split keyboard in landscape mode -->
+    <string name="split_spacer_scale_landscape_unfolded">Unfolded split distance (landscape)</string>
     <!-- Option name for including other IMEs in the language key switch list -->
     <string name="language_switch_key_switch_input_method">Switch to other input methods</string>
     <!-- Option name for switching language / subtype only -->
@@ -336,22 +342,36 @@
     <string name="prefs_long_press_symbol_for_numpad">Long press symbols key for numpad</string>
     <!-- Title of the setting for reduced distance between keys -->
     <string name="prefs_narrow_key_gaps">Narrow key gaps</string>
+    <!-- Title of the setting for reduced distance between unfolded keys -->
+    <string name="prefs_narrow_key_gaps_unfolded">Unfolded arrow key gaps</string>
     <!-- Title of the setting for setting keyboard height -->
     <string name="prefs_keyboard_height_scale">Keyboard height scale</string>
+    <!-- Title of the setting for setting unfolded keyboard height -->
+    <string name="prefs_keyboard_height_scale_unfolded">Keyboard height scale</string>
     <!-- Title of the setting for setting bottom padding height -->
     <string name="prefs_bottom_padding_scale">Bottom padding scale</string>
+    <!-- Title of the setting for setting unfolded bottom padding height -->
+    <string name="prefs_bottom_padding_scale_unfolded">Unfolded bottom padding scale</string>
     <!-- Title of the setting for setting bottom padding height in landscape mode -->
     <string name="prefs_bottom_padding_scale_landscape">Bottom padding scale (landscape)</string>
+    <!-- Title of the setting for setting unfolded bottom padding height in landscape mode -->
+    <string name="prefs_bottom_padding_scale_landscape_unfolded">Unfolded bottom padding scale (landscape)</string>
     <!-- Title of the setting for adjusting font size on the keyboard -->
     <string name="prefs_font_scale">Keyboard font scale</string>
+    <!-- Title of the setting for adjusting font size on the unfolded keyboard -->
+    <string name="prefs_font_scale_unfolded">Unfolded Keyboard font scale</string>
     <!-- Title of the setting for setting side padding -->
     <string name="prefs_side_padding_scale">Side padding scale</string>
+    <!-- Title of the setting for setting unfolded side padding -->
+    <string name="prefs_side_padding_scale_unfolded">Unfolded ide padding scale</string>
     <!-- Title of the setting for setting side padding in landscape mode -->
     <string name="prefs_side_padding_scale_landscape">Side padding scale (landscape)</string>
+    <!-- Title of the setting for setting unfolded side padding in landscape mode -->
+    <string name="prefs_side_padding_scale_landscape_unfolded">Unfolded side padding scale (landscape)</string>
     <!-- Title of the setting for adjusting font size in emoji view -->
     <string name="prefs_emoji_font_scale">Emoji view font scale</string>
-    <!-- Option for additional unfolded settings for foldable phones -->
-    <string name="prefs_unfolded_settings">Unfolded settings</string>
+    <!-- Title of the setting for adjusting unfolded font size in emoji view -->
+    <string name="prefs_emoji_font_scale_unfolded">Unfolded emoji view font scale</string>
     <!-- Description for "unfolded_settings" option. -->
     <string name="prefs_unfolded_settings_summary">Additional settings for foldable phones</string>
     <!-- Title of the setting for customizing space bar text -->

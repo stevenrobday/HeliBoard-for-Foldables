@@ -2,6 +2,7 @@ package helium314.keyboard.latin.settings
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Build
 import android.util.TypedValue
 import android.view.Gravity
@@ -26,6 +27,8 @@ object Defaults {
         val dm = context.resources.displayMetrics
         val px600 = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 600f, dm)
         PREF_POPUP_ON = dm.widthPixels >= px600 || dm.heightPixels >= px600
+        PREF_UNFOLDED_SETTINGS =  Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && context.packageManager.hasSystemFeature(
+            PackageManager.FEATURE_SENSOR_HINGE_ANGLE)
     }
 
     // must correspond to a file name
@@ -78,6 +81,8 @@ object Defaults {
     const val PREF_ADDITIONAL_SUBTYPES = "de${Separators.SET}${ExtraValue.KEYBOARD_LAYOUT_SET}=MAIN:qwerty${Separators.SETS}" +
             "fr${Separators.SET}${ExtraValue.KEYBOARD_LAYOUT_SET}=MAIN:qwertz${Separators.SETS}" +
             "hu${Separators.SET}${ExtraValue.KEYBOARD_LAYOUT_SET}=MAIN:qwerty"
+    @JvmField
+    var PREF_UNFOLDED_SETTINGS = false
     const val PREF_ENABLE_SPLIT_KEYBOARD = false
     const val PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE = false
     const val PREF_SPLIT_SPACER_SCALE = SettingsValues.DEFAULT_SIZE_SCALE
@@ -89,7 +94,6 @@ object Defaults {
     const val PREF_SIDE_PADDING_SCALE_LANDSCAPE = 0f
     const val PREF_FONT_SCALE = SettingsValues.DEFAULT_SIZE_SCALE
     const val PREF_EMOJI_FONT_SCALE = SettingsValues.DEFAULT_SIZE_SCALE
-    const val PREF_UNFOLDED_SETTINGS = false
     const val PREF_ENABLE_SPLIT_KEYBOARD_UNFOLDED = false
     const val PREF_ENABLE_SPLIT_KEYBOARD_LANDSCAPE_UNFOLDED = false
     const val PREF_SPLIT_SPACER_SCALE_UNFOLDED = SettingsValues.DEFAULT_SIZE_SCALE
