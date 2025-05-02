@@ -343,7 +343,7 @@
     <!-- Title of the setting for reduced distance between keys -->
     <string name="prefs_narrow_key_gaps">Narrow key gaps</string>
     <!-- Title of the setting for reduced distance between unfolded keys -->
-    <string name="prefs_narrow_key_gaps_unfolded">Unfolded arrow key gaps</string>
+    <string name="prefs_narrow_key_gaps_unfolded">Unfolded narrow key gaps</string>
     <!-- Title of the setting for setting keyboard height -->
     <string name="prefs_keyboard_height_scale">Keyboard height scale</string>
     <!-- Title of the setting for setting unfolded keyboard height -->
@@ -363,7 +363,7 @@
     <!-- Title of the setting for setting side padding -->
     <string name="prefs_side_padding_scale">Side padding scale</string>
     <!-- Title of the setting for setting unfolded side padding -->
-    <string name="prefs_side_padding_scale_unfolded">Unfolded ide padding scale</string>
+    <string name="prefs_side_padding_scale_unfolded">Unfolded side padding scale</string>
     <!-- Title of the setting for setting side padding in landscape mode -->
     <string name="prefs_side_padding_scale_landscape">Side padding scale (landscape)</string>
     <!-- Title of the setting for setting unfolded side padding in landscape mode -->
