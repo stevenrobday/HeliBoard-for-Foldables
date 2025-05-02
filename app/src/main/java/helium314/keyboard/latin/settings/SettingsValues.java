@@ -209,13 +209,10 @@ public class SettingsValues {
         final float displayWidthDp = TypedValueCompat.pxToDp(res.getDisplayMetrics().widthPixels, res.getDisplayMetrics());
         final float displayHeightDp = TypedValueCompat.pxToDp(res.getDisplayMetrics().heightPixels, res.getDisplayMetrics());
         final boolean isOnlyOrFoldedKeyboard = !prefs.getBoolean(Settings.PREF_UNFOLDED_SETTINGS, Defaults.PREF_UNFOLDED_SETTINGS) || Math.min(displayWidthDp, displayHeightDp) < 600;
-        mIsSplitKeyboardEnabled = isOnlyOrFoldedKeyboard ? Settings.readSplitKeyboardEnabled(prefs, isLandscape)
-            : Settings.readSplitKeyboardEnabledUnfolded(prefs, isLandscape);
+        mIsSplitKeyboardEnabled = Settings.readSplitKeyboardEnabled(prefs, isLandscape, isOnlyOrFoldedKeyboard);
         // determine spacerWidth from display width and scale setting
         final float spacerMultiplier = Math.min(Math.max((displayWidthDp - 600) / 600f + 0.15f, 0.15f), 0.35f);
-        mSplitKeyboardSpacerRelativeWidth = mIsSplitKeyboardEnabled ? (isOnlyOrFoldedKeyboard
-                ? spacerMultiplier * Settings.readSplitSpacerScale(prefs, isLandscape)
-                : spacerMultiplier * Settings.readSplitSpacerScaleUnfolded(prefs, isLandscape)) : 0f;
+        mSplitKeyboardSpacerRelativeWidth = spacerMultiplier * Settings.readSplitSpacerScale(prefs, isLandscape, isOnlyOrFoldedKeyboard);
         mQuickPinToolbarKeys = prefs.getBoolean(Settings.PREF_QUICK_PIN_TOOLBAR_KEYS, Defaults.PREF_QUICK_PIN_TOOLBAR_KEYS);
         mScreenMetrics = Settings.readScreenMetrics(res);
 
@@ -241,8 +238,7 @@ public class SettingsValues {
                 || mOverrideShowingSuggestions;
         mIncognitoModeEnabled = prefs.getBoolean(Settings.PREF_ALWAYS_INCOGNITO_MODE, Defaults.PREF_ALWAYS_INCOGNITO_MODE) || mInputAttributes.mNoLearning
                 || mInputAttributes.mIsPasswordField;
-        mKeyboardHeightScale = isOnlyOrFoldedKeyboard ? prefs.getFloat(Settings.PREF_KEYBOARD_HEIGHT_SCALE, Defaults.PREF_KEYBOARD_HEIGHT_SCALE)
-                : prefs.getFloat(Settings.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED, Defaults.PREF_KEYBOARD_HEIGHT_SCALE_UNFOLDED);
+        mKeyboardHeightScale = Settings.readKeyboardHeightScale(prefs, isOnlyOrFoldedKeyboard);
         mSpaceSwipeHorizontal = Settings.readHorizontalSpaceSwipe(prefs);
         mSpaceSwipeVertical = Settings.readVerticalSpaceSwipe(prefs);
         mLanguageSwipeDistance = prefs.getInt(Settings.PREF_LANGUAGE_SWIPE_DISTANCE, Defaults.PREF_LANGUAGE_SWIPE_DISTANCE);
@@ -274,17 +270,14 @@ public class SettingsValues {
         mAddToPersonalDictionary = prefs.getBoolean(Settings.PREF_ADD_TO_PERSONAL_DICTIONARY, Defaults.PREF_ADD_TO_PERSONAL_DICTIONARY);
         mUseContactsDictionary = SettingsValues.readUseContactsEnabled(prefs, context);
         mCustomNavBarColor = prefs.getBoolean(Settings.PREF_NAVBAR_COLOR, Defaults.PREF_NAVBAR_COLOR);
-        mNarrowKeyGaps = isOnlyOrFoldedKeyboard ? prefs.getBoolean(Settings.PREF_NARROW_KEY_GAPS, Defaults.PREF_NARROW_KEY_GAPS)
-            : prefs.getBoolean(Settings.PREF_NARROW_KEY_GAPS_UNFOLDED, Defaults.PREF_NARROW_KEY_GAPS_UNFOLDED);
+        mNarrowKeyGaps = Settings.readNarrowKeyGaps(prefs, isOnlyOrFoldedKeyboard);
         mSettingsValuesForSuggestion = new SettingsValuesForSuggestion(
                 mBlockPotentiallyOffensive,
                 prefs.getBoolean(Settings.PREF_GESTURE_SPACE_AWARE, Defaults.PREF_GESTURE_SPACE_AWARE)
         );
         mSpacingAndPunctuations = new SpacingAndPunctuations(res, mUrlDetectionEnabled);
-        mBottomPaddingScale = isOnlyOrFoldedKeyboard ? Settings.readBottomPaddingScale(prefs, isLandscape)
-            : Settings.readBottomPaddingScaleUnfolded(prefs, isLandscape);
-        mSidePaddingScale = isOnlyOrFoldedKeyboard ? Settings.readSidePaddingScale(prefs, isLandscape)
-            : Settings.readSidePaddingScaleUnfolded(prefs, isLandscape);
+        mBottomPaddingScale = Settings.readBottomPaddingScale(prefs, isLandscape, isOnlyOrFoldedKeyboard);
+        mSidePaddingScale = Settings.readSidePaddingScale(prefs, isLandscape, isOnlyOrFoldedKeyboard);
         mLongPressSymbolsForNumpad = prefs.getBoolean(Settings.PREFS_LONG_PRESS_SYMBOLS_FOR_NUMPAD, Defaults.PREFS_LONG_PRESS_SYMBOLS_FOR_NUMPAD);
         mAutoShowToolbar = prefs.getBoolean(Settings.PREF_AUTO_SHOW_TOOLBAR, Defaults.PREF_AUTO_SHOW_TOOLBAR);
         mAutoHideToolbar = suggestionsEnabled && prefs.getBoolean(Settings.PREF_AUTO_HIDE_TOOLBAR, Defaults.PREF_AUTO_HIDE_TOOLBAR);
@@ -295,10 +288,8 @@ public class SettingsValues {
         mRemoveRedundantPopups = prefs.getBoolean(Settings.PREF_REMOVE_REDUNDANT_POPUPS, Defaults.PREF_REMOVE_REDUNDANT_POPUPS);
         mSpaceBarText = prefs.getString(Settings.PREF_SPACE_BAR_TEXT, Defaults.PREF_SPACE_BAR_TEXT);
         mEmojiMaxSdk = prefs.getInt(Settings.PREF_EMOJI_MAX_SDK, Defaults.PREF_EMOJI_MAX_SDK);
-        mFontSizeMultiplier = isOnlyOrFoldedKeyboard ? prefs.getFloat(Settings.PREF_FONT_SCALE, Defaults.PREF_FONT_SCALE)
-            : prefs.getFloat(Settings.PREF_FONT_SCALE_UNFOLDED, Defaults.PREF_FONT_SCALE_UNFOLDED);
-        mFontSizeMultiplierEmoji = isOnlyOrFoldedKeyboard ? prefs.getFloat(Settings.PREF_EMOJI_FONT_SCALE, Defaults.PREF_EMOJI_FONT_SCALE)
-            : prefs.getFloat(Settings.PREF_EMOJI_FONT_SCALE_UNFOLDED, Defaults.PREF_EMOJI_FONT_SCALE_UNFOLDED);
+        mFontSizeMultiplier = Settings.readFontSizeMultiplier(prefs, isOnlyOrFoldedKeyboard);
+        mFontSizeMultiplierEmoji = Settings.readFontSizeMultiplierEmoji(prefs, isOnlyOrFoldedKeyboard);
     }
 
     public boolean isApplicationSpecifiedCompletionsOn() {
