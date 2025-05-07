@@ -238,7 +238,7 @@ public class SettingsValues {
                 || mOverrideShowingSuggestions;
         mIncognitoModeEnabled = prefs.getBoolean(Settings.PREF_ALWAYS_INCOGNITO_MODE, Defaults.PREF_ALWAYS_INCOGNITO_MODE) || mInputAttributes.mNoLearning
                 || mInputAttributes.mIsPasswordField;
-        mKeyboardHeightScale = Settings.readKeyboardHeightScale(prefs, isOnlyOrFoldedKeyboard);
+        mKeyboardHeightScale = Settings.readKeyboardHeightScale(prefs, isLandscape, isOnlyOrFoldedKeyboard);
         mSpaceSwipeHorizontal = Settings.readHorizontalSpaceSwipe(prefs);
         mSpaceSwipeVertical = Settings.readVerticalSpaceSwipe(prefs);
         mLanguageSwipeDistance = prefs.getInt(Settings.PREF_LANGUAGE_SWIPE_DISTANCE, Defaults.PREF_LANGUAGE_SWIPE_DISTANCE);
@@ -270,7 +270,7 @@ public class SettingsValues {
         mAddToPersonalDictionary = prefs.getBoolean(Settings.PREF_ADD_TO_PERSONAL_DICTIONARY, Defaults.PREF_ADD_TO_PERSONAL_DICTIONARY);
         mUseContactsDictionary = SettingsValues.readUseContactsEnabled(prefs, context);
         mCustomNavBarColor = prefs.getBoolean(Settings.PREF_NAVBAR_COLOR, Defaults.PREF_NAVBAR_COLOR);
-        mNarrowKeyGaps = Settings.readNarrowKeyGaps(prefs, isOnlyOrFoldedKeyboard);
+        mNarrowKeyGaps = Settings.readNarrowKeyGaps(prefs, isLandscape, isOnlyOrFoldedKeyboard);
         mSettingsValuesForSuggestion = new SettingsValuesForSuggestion(
                 mBlockPotentiallyOffensive,
                 prefs.getBoolean(Settings.PREF_GESTURE_SPACE_AWARE, Defaults.PREF_GESTURE_SPACE_AWARE)
@@ -288,8 +288,8 @@ public class SettingsValues {
         mRemoveRedundantPopups = prefs.getBoolean(Settings.PREF_REMOVE_REDUNDANT_POPUPS, Defaults.PREF_REMOVE_REDUNDANT_POPUPS);
         mSpaceBarText = prefs.getString(Settings.PREF_SPACE_BAR_TEXT, Defaults.PREF_SPACE_BAR_TEXT);
         mEmojiMaxSdk = prefs.getInt(Settings.PREF_EMOJI_MAX_SDK, Defaults.PREF_EMOJI_MAX_SDK);
-        mFontSizeMultiplier = Settings.readFontSizeMultiplier(prefs, isOnlyOrFoldedKeyboard);
-        mFontSizeMultiplierEmoji = Settings.readFontSizeMultiplierEmoji(prefs, isOnlyOrFoldedKeyboard);
+        mFontSizeMultiplier = Settings.readFontSizeMultiplier(prefs, isLandscape, isOnlyOrFoldedKeyboard);
+        mFontSizeMultiplierEmoji = Settings.readFontSizeMultiplierEmoji(prefs, isLandscape, isOnlyOrFoldedKeyboard);
     }
 
     public boolean isApplicationSpecifiedCompletionsOn() {
