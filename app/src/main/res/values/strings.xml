@@ -367,11 +367,11 @@
     <!-- Title of the setting for setting bottom padding height -->
     <string name="prefs_bottom_padding_scale">Bottom padding scale</string>
     <!-- Title of the setting for setting unfolded bottom padding height -->
-    <string name="prefs_bottom_padding_scale_unfolded">bottom padding scale</string>
+    <string name="prefs_bottom_padding_scale_unfolded">Bottom padding scale</string>
     <!-- Title of the setting for setting bottom padding height in landscape mode -->
     <string name="prefs_bottom_padding_scale_landscape">Bottom padding scale</string>
     <!-- Title of the setting for setting unfolded bottom padding height in landscape mode -->
-    <string name="prefs_bottom_padding_scale_landscape_unfolded">bottom padding scale</string>
+    <string name="prefs_bottom_padding_scale_landscape_unfolded">Bottom padding scale</string>
     <!-- Title of the setting for adjusting font size on the keyboard -->
     <string name="prefs_font_scale">Keyboard font scale</string>
     <!-- Title of the setting for adjusting font size on the landscape keyboard -->
